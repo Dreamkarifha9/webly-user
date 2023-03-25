@@ -1,0 +1,5 @@
+export enum EDateFilter {
+  LASTWEEK = 'LASTWEEK',
+  LASTMONTH = 'LASTMONTH',
+  LAST3MONTH = 'LAST3MONTH',
+}
