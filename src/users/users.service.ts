@@ -47,8 +47,7 @@ export class UsersService {
 
     const newUser = this.userRepository.create(user);
     await this.userRepository.save(newUser);
-    const { password, salt, ...other } = newUser;
-    return other;
+    return await this.findById(user.id);
   }
 
   async findOneBySearch(q: Partial<UserDto>) {
