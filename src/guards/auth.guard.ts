@@ -16,9 +16,12 @@ export class AuthGuard implements CanActivate {
 
     try {
       const isAuthenticated = await this.client
-        .send<IResponseAuth, Record<string, string>>('isAuthenticated', {
-          jwt: req.headers.authorization?.split(' ')[1], // <token> not bearer
-        })
+        .send<IResponseAuth | boolean, Record<string, string>>(
+          'isAuthenticated',
+          {
+            jwt: req.headers.authorization?.split(' ')[1], // <token> not bearer
+          },
+        )
         .pipe(timeout(5000))
         .toPromise();
       this.logger.debug(`isAuthenticated ${JSON.stringify(isAuthenticated)}`);
